@@ -1,0 +1,18 @@
+{
+  "name": "expertcoder/twig-renderer-bundle",
+  "type": "symfony-bundle",
+  "description": "Use Twig to generate Email or PDF contents",
+  "homepage": "https://github.com/expertcoder/TwigRendererBundle",
+  "authors": [
+    {
+      "name": "Samual Anthony",
+      "email": "sam@expertcoder.io"
+    }
+  ],
+  "require": {
+    "php": ">=5.4"
+  },
+  "autoload": {
+    "psr-4": { "ExpertCoder\\TwigRendererBundle\\": "" }
+  }
+}
