@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="expertcoder_twig_renderer.abstract_renderer"
+                 class="ExpertCoder\TwigRendererBundle\Services\AbstractRenderer"
+                 abstract="true" >
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+        <service
+                id="expertcoder_twig_renderer.email_renderer"
+                class="ExpertCoder\TwigRendererBundle\Services\EmailRenderer"
+                parent="expertcoder_twig_renderer.abstract_renderer">
+        </service>
+    </services>
+
+</container>
