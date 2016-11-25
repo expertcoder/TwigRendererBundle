@@ -11,16 +11,25 @@ abstract class AbstractRenderer
 	/**
 	 * @return \Twig_Template
 	 */
-	protected function getTemplateObject($path, $templateName)
+	protected function getTemplateObject($templatePath)
 	{
-		return $this->getTwigEnvironment()->loadTemplate($path.'/'.$templateName);
+		return $this->getTwigEnvironment()->loadTemplate($templatePath);
 	}
 
 	protected function renderTwigBlock(\Twig_Template $templateObject, $block, $params = array())
 	{
 		$twig = $this->getTwigEnvironment();
 
-		return $templateObject->renderBlock($block, $twig->mergeGlobals($params));
+		try {
+			$renderedContents = $templateObject->renderBlock($block, $twig->mergeGlobals($params));
+		} catch (\Twig_Error $e) {
+			//Slight work around Twig_Template::renderBlock() is using output buffering
+			//So need to tidy that up if there is an exception
+			ob_clean();
+			throw $e;
+		}
+
+		return $renderedContents;
 	}
 
 	/**

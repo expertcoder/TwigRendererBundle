@@ -14,7 +14,7 @@ class EmailRenderer extends AbstractRenderer
 		$this->configureOptionsForSendEmail($resolver);
 		$this->options = $resolver->resolve($options);
 
-		$templateObject = $this->getTemplateObject('Emails',$this->options['templateName']);
+		$templateObject = $this->getTemplateObject($this->options['templatePath']);
 
 		$this->checkTemplateHasRequiredBlocksForEmail($templateObject);
 
@@ -60,14 +60,14 @@ class EmailRenderer extends AbstractRenderer
 
 		$resolver->setRequired(array(
 			'to',
-			'templateName',
+			'templatePath',
 		));
 
 		$resolver->setDefined(array(
 			'attachmentFileName'
 		));
 
-//		$resolver->setAllowedTypes('templateParams', ['array']);
+		$resolver->setAllowedTypes('templateParams', ['array']);
 	}
 
 	/**
