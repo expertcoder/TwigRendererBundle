@@ -24,5 +24,9 @@ class ExpertCoderTwigRendererExtension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
-    }
+
+		$container->setParameter('expert_coder_twig_renderer.default_from_name', $config['default_from_name']);
+		$container->setParameter('expert_coder_twig_renderer.default_from_email', $config['default_from_email']);
+
+	}
 }

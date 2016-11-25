@@ -20,9 +20,18 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('expert_coder_twig_renderer');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+		$rootNode->isRequired()->cannotBeEmpty()
+			->children()
+				->scalarNode('default_from_email')
+					->isRequired()
+					->cannotBeEmpty()
+				->end()
+				->scalarNode('default_from_name')
+					->isRequired()
+					->cannotBeEmpty()
+				->end()
+			->end()
+		;
 
         return $treeBuilder;
     }

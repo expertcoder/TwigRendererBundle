@@ -52,9 +52,11 @@ class EmailRenderer extends AbstractRenderer
 
 	protected function configureOptionsForSendEmail(OptionsResolver $resolver)
 	{
-		//TODO - the default "from" will need to be taken from Symfony config/parameters
+		$defaultFromName = $this->container->getParameter('expert_coder_twig_renderer.default_from_name');
+		$defaultFromEmail = $this->container->getParameter('expert_coder_twig_renderer.default_from_email');
+
 		$resolver->setDefaults(array(
-			'from'   => array('sam@expertcoder.io' => 'Sam Anthony' ),
+			'from'   => array($defaultFromEmail => $defaultFromName ),
 			'templateParams' => array(),
 		));
 
